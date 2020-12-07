@@ -4,6 +4,7 @@ import PostScreen from "./screens/post";
 import HomeScreen from "./screens/login";
 import RegistrationScreen from "./screens/register";
 import ListScreen from "./screens/list";
+import ProfileScreen from "./screens/profile"
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
@@ -21,11 +22,17 @@ const MainStackNavigator = () => {
       <Stack.Screen name="Login" component={HomeScreen} />
       <Stack.Screen name="Post" component={PostScreen} />
       <Stack.Screen name="Register" component={RegistrationScreen} />
-      
+      <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
-
+const ProfileNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+    </Stack.Navigator>
+  );
+};
 const PostNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
@@ -41,4 +48,4 @@ const PostsListNavigator = () => {
   );
 };
 
-export { MainStackNavigator, PostNavigator, PostsListNavigator };
+export { MainStackNavigator, PostNavigator, PostsListNavigator, ProfileNavigator };

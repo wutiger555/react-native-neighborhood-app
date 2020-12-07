@@ -37,7 +37,7 @@ export default function LoginScreen({ navigation }) {
               return;
             }
             const user = firestoreDocument.data();
-            navigation.navigate("Details", { user });
+            navigation.navigate("Profile", { user });
           })
           .catch((error) => {
             alert(error);

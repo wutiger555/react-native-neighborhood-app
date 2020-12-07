@@ -18,11 +18,15 @@ export default function postsScreen({ navigation }) {
       snapshot.forEach(function (childSnapshot) {
         const title = childSnapshot.val().title;
         const content = childSnapshot.val().content;
+        const date = childSnapshot.val().date;
+        const poster = childSnapshot.val().poster;
         const key = childSnapshot.key;
         array.push({
           id: key,
           title: title,
           content: content,
+          datetime: date,
+          poster: poster
         });
 
       });
@@ -45,7 +49,8 @@ export default function postsScreen({ navigation }) {
           title={item.title}
           description={item.content}
           iconType="house"
-            bottomRightText = {item.id}
+          topRightText= {"發布者："+item.poster}
+          bottomRightText = {"發布日期："+item.datetime}
         />
         )} 
       />

@@ -3,10 +3,22 @@ import { useState } from "react";
 import { Button, View, Text, TextInput, StyleSheet } from "react-native";
 import { firebase } from "../firebase/config";
 
+const user = firebase.auth().currentUser;
+const getCurrentDate=()=>{
+
+  var date = new Date().getDate();
+  var month = new Date().getMonth() + 1;
+  var year = new Date().getFullYear();
+
+  return date + '-' + month + '-' + year;//format: dd-mm-yyyy;
+}
 const submitPost = (title, content) => {
   firebase.database().ref("/posts").push({ 
     title: title, 
-    content: content });
+    content: content,
+    date: getCurrentDate(),
+    poster: user.displayName
+  });
 };
 
 const DetailsScreen = () => {
