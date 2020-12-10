@@ -7,6 +7,8 @@ import {
   View,
   Alert,
   ImageBackground,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "../styles/loginStyle";
@@ -17,6 +19,12 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // 點擊鍵盤外面可跳出鍵盤
+  const DismissKeyboard = ({ children }) => (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      {children}
+    </TouchableWithoutFeedback>
+  );
   const onFooterLinkPress = () => {
     navigation.navigate("Register");
   };
@@ -33,7 +41,7 @@ export default function LoginScreen({ navigation }) {
           .get()
           .then((firestoreDocument) => {
             if (!firestoreDocument.exists) {
-              alert("User does not exist anymore.");
+              alert("用戶不存在");
               return;
             }
             const user = firestoreDocument.data();
@@ -57,54 +65,56 @@ export default function LoginScreen({ navigation }) {
       });
   };
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("../assets/login-bg.jpg")}
-        style={styles.image}
-      >
-        <KeyboardAwareScrollView
-          style={{ flex: 1, width: "100%" }}
-          keyboardShouldPersistTaps="always"
+    <DismissKeyboard>
+      <View style={styles.container}>
+        <ImageBackground
+          source={require("../assets/login-bg.jpg")}
+          style={styles.image}
         >
-          <Image
-            style={styles.logo}
-            source={require("../assets/login-icon.png")}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="信箱"
-            placeholderTextColor="#aaaaaa"
-            onChangeText={(text) => setEmail(text)}
-            value={email}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-          <TextInput
-            style={styles.input}
-            placeholderTextColor="#aaaaaa"
-            secureTextEntry
-            placeholder="密碼"
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => onLoginPress()}
+          <KeyboardAwareScrollView
+            style={{ flex: 1, width: "100%" }}
+            keyboardShouldPersistTaps="always"
           >
-            <Text style={styles.buttonTitle}>登入</Text>
-          </TouchableOpacity>
-          <View style={styles.footerView}>
-            <Text style={styles.footerText}>
-              還沒有帳號嗎？{" "}
-              <Text onPress={onFooterLinkPress} style={styles.footerLink}>
-                點此註冊
+            <Image
+              style={styles.logo}
+              source={require("../assets/login-icon.png")}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="信箱"
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(text) => setEmail(text)}
+              value={email}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+            <TextInput
+              style={styles.input}
+              placeholderTextColor="#aaaaaa"
+              secureTextEntry
+              placeholder="密碼"
+              onChangeText={(text) => setPassword(text)}
+              value={password}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+            />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => onLoginPress()}
+            >
+              <Text style={styles.buttonTitle}>登入</Text>
+            </TouchableOpacity>
+            <View style={styles.footerView}>
+              <Text style={styles.footerText}>
+                還沒有帳號嗎？
+                <Text onPress={onFooterLinkPress} style={styles.footerLink}>
+                  點此註冊
+                </Text>
               </Text>
-            </Text>
-          </View>
-        </KeyboardAwareScrollView>
-      </ImageBackground>
-    </View>
+            </View>
+          </KeyboardAwareScrollView>
+        </ImageBackground>
+      </View>
+    </DismissKeyboard>
   );
 }

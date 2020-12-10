@@ -4,10 +4,13 @@ import {
   Text,
   StyleSheet,
   View,
+  TouchableOpacity,
+  Image,
 } from "react-native";
 import { firebase } from "../firebase/config";
 import "firebase/firestore";
 import { Card } from "@paraboly/react-native-card";
+
 
 export default function postsScreen({ navigation }) {
   const [postList, setPostList] = useState([]);
@@ -40,8 +43,27 @@ export default function postsScreen({ navigation }) {
   
   return (
     <View style={style.container}>
-     <Text style={style.title}>社區公告列表</Text>
+      <View style={style.titleText}>
+      <Text style={style.title}>社區公告列表</Text>
+      </View>
+      
+      <View style={style.topic}>
+        <TouchableOpacity style={style.plus} onPress={()=>navigation.navigate("Post")}>
+        <Image
+            style={style.addImg}
+            source={{
+              uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Add_document_icon_%28the_Noun_Project_27896%29.svg/1024px-Add_document_icon_%28the_Noun_Project_27896%29.svg.png",
+            }}
+          />
+          <Text>發布公告</Text>
+        </TouchableOpacity>
+        
+        
+      </View>
+     
       <FlatList
+      style={style.flatList}
+        nestedScrollEnabled
         keyExtractor = {(item) => item.id}
         data = {postList}
         renderItem = {({item}) => (
@@ -60,12 +82,34 @@ export default function postsScreen({ navigation }) {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 80,
+    marginTop: 60,
+  },
+  topic:{
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginBottom: 10,
+    width:70,
+    padding:1,
+    marginLeft:20,
+    justifyContent: 'center',
   },
   title:{
     textAlign: 'center',
     fontWeight: 'bold',
-    marginBottom: 20,
     fontSize: 30,
+    color:"#FFFFFF",
+  },
+  addImg: {
+    width: 40,
+    height: 40,
+  },
+  flatList:{
+    paddingLeft:10
+  },
+  titleText:{
+    backgroundColor: "#00BFFF",
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginBottom:10
   }
 });

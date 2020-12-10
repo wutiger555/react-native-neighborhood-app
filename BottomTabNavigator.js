@@ -4,9 +4,9 @@ import { MaterialCommunityIcons } from "react-native-vector-icons";
 
 import {
   MainStackNavigator,
-  PostNavigator,
   PostsListNavigator,
-  ProfileNavigator
+  ProfileNavigator,
+  MainNavigator
 } from "./StackNavigator";
 
 const Tab = createBottomTabNavigator();
@@ -14,11 +14,18 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen
+      {/* <Tab.Screen
         name="發布公告"
         component={PostNavigator}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="plus" />,
+        }}
+      /> */}
+      <Tab.Screen
+        name="主頁"
+        component={MainNavigator}
+        options={{
+          tabBarIcon: () => <MaterialCommunityIcons name="home" />,
         }}
       />
       <Tab.Screen
@@ -32,7 +39,7 @@ const BottomTabNavigator = () => {
         name="個人資料"
         component={ProfileNavigator}
         options={{
-          tabBarIcon: () => <MaterialCommunityIcons name="home" />,
+          tabBarIcon: () => <MaterialCommunityIcons name="information" />,
         }}
       />
       <Tab.Screen
@@ -40,10 +47,8 @@ const BottomTabNavigator = () => {
         component={MainStackNavigator}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="login" />,
+          tabBarVisible: false,
         }}
-        // options={{
-        //   tabBarVisible: false,
-        // }}
       />
     </Tab.Navigator>
   );
