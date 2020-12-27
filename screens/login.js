@@ -45,7 +45,7 @@ export default function LoginScreen({ navigation }) {
               return;
             }
             const user = firestoreDocument.data();
-            navigation.navigate("Profile", { user });
+            navigation.navigate("Main", { user });
           })
           .catch((error) => {
             alert(error);
@@ -65,7 +65,7 @@ export default function LoginScreen({ navigation }) {
       });
   };
   return (
-    <DismissKeyboard>
+    // <DismissKeyboard>
       <View style={styles.container}>
         <ImageBackground
           source={require("../assets/login-bg.jpg")}
@@ -115,6 +115,6 @@ export default function LoginScreen({ navigation }) {
           </KeyboardAwareScrollView>
         </ImageBackground>
       </View>
-    </DismissKeyboard>
+    // </DismissKeyboard>
   );
 }

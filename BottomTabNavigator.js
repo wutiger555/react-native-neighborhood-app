@@ -6,7 +6,8 @@ import {
   MainStackNavigator,
   PostsListNavigator,
   ProfileNavigator,
-  MainNavigator
+  MainNavigator,
+  QRCodeNavigator
 } from "./StackNavigator";
 
 const Tab = createBottomTabNavigator();
@@ -36,20 +37,28 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
+        name="管理費"
+        component={QRCodeNavigator}
+        options={{
+          tabBarIcon: () => <MaterialCommunityIcons name="cash" />,
+          
+        }}
+      />
+      <Tab.Screen
         name="個人資料"
         component={ProfileNavigator}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="information" />,
+          
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="登入"
         component={MainStackNavigator}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="login" />,
-          tabBarVisible: false,
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

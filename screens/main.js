@@ -1,26 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import Carousel from "react-native-carousel-view";
 import { firebase } from "../firebase/config";
+import EventCalendar from "react-native-events-calendar";
+
+const events = [
+  {
+    start: "2020-12-01 01:00:00",
+    end: "2020-12-02 01:30:00",
+    title: "基泰地景十二月份里民大會",
+    summary: "里民大會 請大家記得到場喔！",
+  },
+  {
+    start: "2020-12-02 02:00:00",
+    end: "2020-12-03 02:30:00",
+    title: "基泰地景十二月份聚餐",
+    summary: "川菜聚餐囉！",
+  }
+];
 
 const MainScreen = ({ navigation }) => {
-    // 確認登入 否則跳回login
-    useEffect((navigation) => {
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-            //   console.log('user logged')
-            }else{
-                navigation.navigate("Login")
-            }
-         });
-        });
+  // 確認登入 否則跳回login
+  useEffect(() => {
+    const user = firebase.auth().currentUser;
+    if(!user){
+      navigation.navigate("Login");
+    }
+  });
   return (
-
-      <View style={styles.container}>
-          <View style={styles.topbar}>
-          <Text style={styles.title}>主頁</Text>
-          </View>
-        
+    <View style={styles.container}>
+      <View style={styles.topbar}>
+        <Text style={styles.title}>主頁</Text>
+      </View>
+      <View style={styles.carousel}>
         <Carousel
           width={375}
           height={300}
@@ -57,29 +76,51 @@ const MainScreen = ({ navigation }) => {
           </View>
         </Carousel>
       </View>
+
+      <ScrollView style={styles.calendar}>
+        <Text style={styles.calendarText}>社區日曆</Text>
+        <EventCalendar
+          eventTapped={JSON.stringify.bind(this)}
+          events={events}
+          width={370}
+          initDate={"2020-12-01"}
+        />
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  carousel: {
+    flex: 1,
+  },
+  calendarText:{
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 20,
+    paddingBottom:10
+  },
   img: {
     width: 375,
     height: 300,
   },
-  topbar:{
+  calendar: {
+    flex: 1,
+  },
+  topbar: {
+    flex: .3,
     backgroundColor: "#00BFFF",
-    marginBottom: 50,
-    width: 1000,
-    paddingTop: 10,
-    paddingBottom: 10,
+    width: 400,
   },
   title: {
+    paddingTop: 50,
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 30,
-    color:"#FFFFFF",
+    color: "#FFFFFF",
   },
   container: {
-    flex: .7,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },

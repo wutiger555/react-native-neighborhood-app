@@ -82,7 +82,6 @@ export default function postsScreen({ navigation }) {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 60,
   },
   topic:{
     flexDirection: 'row',
@@ -98,6 +97,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
     color:"#FFFFFF",
+    paddingTop: 60,
   },
   addImg: {
     width: 40,

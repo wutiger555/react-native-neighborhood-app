@@ -65,84 +65,82 @@ export default function RegistrationScreen({ navigation }) {
   };
 
   return (
-    <DismissKeyboard>
-      <View style={styles.container}>
-        <ImageBackground
-          source={require("../assets/login-bg.jpg")}
-          style={styles.image}
+    <View style={styles.container}>
+      <ImageBackground
+        source={require("../assets/login-bg.jpg")}
+        style={styles.image}
+      >
+        <KeyboardAwareScrollView
+          style={{ flex: 1, width: "100%" }}
+          keyboardShouldPersistTaps="always"
         >
-          <KeyboardAwareScrollView
-            style={{ flex: 1, width: "100%" }}
-            keyboardShouldPersistTaps="always"
+          <Image
+            style={styles.logo}
+            source={require("../assets/login-icon.png")}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="姓名"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(text) => setFullName(text)}
+            value={fullName}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="信箱"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="社區名稱"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(text) => setCommunity(text)}
+            value={community}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.input}
+            placeholderTextColor="#aaaaaa"
+            secureTextEntry
+            placeholder="密碼"
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.input}
+            placeholderTextColor="#aaaaaa"
+            secureTextEntry
+            placeholder="確認密碼"
+            onChangeText={(text) => setConfirmPassword(text)}
+            value={confirmPassword}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => onRegisterPress()}
           >
-            <Image
-              style={styles.logo}
-              source={require("../assets/login-icon.png")}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="姓名"
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(text) => setFullName(text)}
-              value={fullName}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="信箱"
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(text) => setEmail(text)}
-              value={email}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="社區名稱"
-              placeholderTextColor="#aaaaaa"
-              onChangeText={(text) => setCommunity(text)}
-              value={community}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#aaaaaa"
-              secureTextEntry
-              placeholder="密碼"
-              onChangeText={(text) => setPassword(text)}
-              value={password}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#aaaaaa"
-              secureTextEntry
-              placeholder="確認密碼"
-              onChangeText={(text) => setConfirmPassword(text)}
-              value={confirmPassword}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-            />
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => onRegisterPress()}
-            >
-              <Text style={styles.buttonTitle}>創建帳戶</Text>
-            </TouchableOpacity>
-            <View style={styles.footerView}>
-              <Text style={styles.footerText}>
-                已經擁有帳戶了？{" "}
-                <Text onPress={onFooterLinkPress} style={styles.footerLink}>
-                  點此返回登入
-                </Text>
+            <Text style={styles.buttonTitle}>創建帳戶</Text>
+          </TouchableOpacity>
+          <View style={styles.footerView}>
+            <Text style={styles.footerText}>
+              已經擁有帳戶了？{" "}
+              <Text onPress={onFooterLinkPress} style={styles.footerLink}>
+                點此返回登入
               </Text>
-            </View>
-          </KeyboardAwareScrollView>
-        </ImageBackground>
-      </View>
-    </DismissKeyboard>
+            </Text>
+          </View>
+        </KeyboardAwareScrollView>
+      </ImageBackground>
+    </View>
   );
 }

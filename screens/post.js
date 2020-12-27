@@ -4,14 +4,16 @@ import {
   Button,
   View,
   Text,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
   Image,
   Keyboard,
   TouchableWithoutFeedback,
+  
 } from "react-native";
 import { firebase } from "../firebase/config";
+import { TextInput } from 'react-native-paper';
+
 
 // 點擊鍵盤外面可跳出鍵盤
 const DismissKeyboard = ({ children }) => (
@@ -42,6 +44,7 @@ const DetailsScreen = ({ navigation }) => {
 
   return (
     <DismissKeyboard>
+
       <View style={style.container}>
         <TouchableOpacity
           style={style.back}
@@ -61,7 +64,6 @@ const DetailsScreen = ({ navigation }) => {
         </View>
 
         <Text style={style.inputDes}>公告標題</Text>
-
         <TextInput
           style={style.title}
           placeholder="公告標題"
@@ -74,25 +76,26 @@ const DetailsScreen = ({ navigation }) => {
           onChangeText={(text) => setContent(text)}
           placeholder="公告內容"
         />
+        
         <Button
           title="送出"
           onPress={() => submitPost(title, content, navigation)}
         />
       </View>
-    </DismissKeyboard>
+      </DismissKeyboard>
   );
 };
 
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 60,
   },
   back: {
     flexDirection: "row",
     justifyContent: "flex-start",
     paddingLeft: 10,
-    marginBottom: 2,
+    paddingTop: 40,
+    backgroundColor: "#00BFFF"
   },
   lefttext: {
     fontSize: 20,
