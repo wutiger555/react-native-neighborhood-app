@@ -44,7 +44,6 @@ const DetailsScreen = ({ navigation }) => {
 
   return (
     <DismissKeyboard>
-
       <View style={style.container}>
         <TouchableOpacity
           style={style.back}

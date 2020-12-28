@@ -68,12 +68,14 @@ export default function postsScreen({ navigation }) {
         data = {postList}
         renderItem = {({item}) => (
           <Card
+          styles={{ width: 200 }}
           title={item.title}
           description={item.content}
           iconType="house"
           topRightText= {"發布者："+item.poster}
           bottomRightText = {"發布日期："+item.datetime}
         />
+          
         )} 
       />
     </View>
@@ -104,7 +106,7 @@ const style = StyleSheet.create({
     height: 40,
   },
   flatList:{
-    paddingLeft:10
+    paddingLeft:10,
   },
   titleText:{
     backgroundColor: "#00BFFF",

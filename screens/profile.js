@@ -57,10 +57,10 @@ export default function ProfileScreen({ navigation }) {
             <Text style={styles.count}>使用者名稱: {user.displayName}</Text>
           </View>
           <View style={styles.buttonContainer}>
-            <Text>社區名稱: {community}</Text>
+            <Text style={{fontWeight: "bold", fontSize: 18,}}>社區名稱: {community}</Text>
           </View>
           <View style={styles.buttonContainer}>
-            <Text>UID: {user.uid}</Text>
+            <Text style={{fontSize: 13,}}>UID: {user.uid}</Text>
           </View>
           <TouchableOpacity style={styles.followButton} onPress={()=>logout()}>
             <Text style={styles.followButtonText}>登出</Text>
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#00BFFF",
   },
   headerContent: {
+    marginTop: 10,
     padding: 30,
     alignItems: "center",
   },
@@ -89,13 +90,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   name: {
-    fontSize: 22,
+    fontSize: 30,
     color: "#FFFFFF",
     fontWeight: "600",
   },
   profileDetail: {
     alignSelf: "center",
-    marginTop: 200,
+    marginTop: 230,
     alignItems: "center",
     flexDirection: "row",
     position: "absolute",
@@ -108,9 +109,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     color: "#00CED1",
+    fontWeight: "bold",
   },
   count: {
     fontSize: 18,
+    fontWeight: "bold",
   },
   bodyContent: {
     flex: 1,
@@ -155,6 +158,7 @@ const styles = StyleSheet.create({
   },
   followButtonText: {
     color: "black",
-    fontSize: 17,
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
